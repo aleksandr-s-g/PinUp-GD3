@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ben0t3f5wws7j"]
+
+[ext_resource type="Script" path="res://scenes/globals/SwipeDetector.gd" id="1_itqmf"]
+
+[node name="SwipeDetector" type="Node"]
+script = ExtResource("1_itqmf")
+
+[node name="SwipeTimeout" type="Timer" parent="."]
+one_shot = true
+
+[node name="DoubleTapTimeout" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true

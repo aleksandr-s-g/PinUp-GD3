@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://img/ball.png" type="Texture" id=1]
+[ext_resource path="res://scenes/globals/SwipeDetector.gd" type="Script" id=2]
+[ext_resource path="res://scenes/globals/ball.gd" type="Script" id=10]
+
+[sub_resource type="PhysicsMaterial" id=2]
+resource_local_to_scene = true
+friction = 0.0
+absorbent = true
+
+[sub_resource type="CircleShape2D" id=1]
+resource_local_to_scene = true
+custom_solver_bias = 1.0
+radius = 80.0
+
+[node name="Ball" type="RigidBody2D"]
+mode = 2
+physics_material_override = SubResource( 2 )
+gravity_scale = 0.0
+custom_integrator = true
+angular_damp = 100.0
+script = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -1, -1 )
+texture = ExtResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+smoothing_enabled = true
+
+[node name="SwipeDetector" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="DoubleTapTimeout" type="Timer" parent="SwipeDetector"]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="swiped" from="SwipeDetector" to="." method="_on_swipe_detector_swiped"]

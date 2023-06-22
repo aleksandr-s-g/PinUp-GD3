@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://scenes/globals/main_menu.gd" type="Script" id=1]
+[ext_resource path="res://img/bg_long.png" type="Texture" id=2]
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://styles/game_mode_button_group.tres" type="ButtonGroup" id=4]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 3 )
+
+[node name="MainMenu" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="HUD" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 900.0
+margin_bottom = 1952.0
+rect_min_size = Vector2( 500, 500 )
+rect_clip_content = true
+size_flags_horizontal = 15
+size_flags_vertical = 15
+theme = SubResource( 1 )
+
+[node name="BackGround" type="Sprite" parent="HUD"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="GameTypes" type="VBoxContainer" parent="HUD"]
+anchor_left = 0.439
+anchor_top = 0.678
+anchor_right = 0.55
+anchor_bottom = 0.921
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Relax" type="CheckBox" parent="HUD/GameTypes"]
+margin_right = 175.0
+margin_bottom = 69.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/font = SubResource( 2 )
+pressed = true
+group = ExtResource( 4 )
+text = "Relax"
+
+[node name="Hard" type="CheckBox" parent="HUD/GameTypes"]
+margin_top = 73.0
+margin_right = 175.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/font = SubResource( 2 )
+group = ExtResource( 4 )
+text = "Hard"
+
+[node name="Race" type="CheckBox" parent="HUD/GameTypes"]
+margin_top = 146.0
+margin_right = 175.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 100, 50 )
+custom_fonts/font = SubResource( 2 )
+group = ExtResource( 4 )
+text = "Race"
+
+[node name="Start" type="Button" parent="HUD"]
+anchor_left = 0.3
+anchor_top = 0.876
+anchor_right = 0.7
+anchor_bottom = 0.876
+margin_left = 0.299988
+margin_top = 0.0479736
+margin_right = 21.2
+margin_bottom = 130.048
+custom_fonts/font = SubResource( 3 )
+text = "Start"
+
+[connection signal="pressed" from="HUD/Start" to="." method="_on_start_button_pressed"]
