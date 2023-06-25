@@ -8,6 +8,18 @@
 
 config_version=4
 
+[Facebook]
+
+FB_APP_ID="642822207456191"
+
+[NativeLib]
+
+Python="/Library/Frameworks/Python.framework/Versions/3.11/bin/python3"
+
+[android]
+
+modules="org/godotengine/godot/GodotFacebook"
+
 [application]
 
 config/name="PinUp GD3"
@@ -15,12 +27,20 @@ run/main_scene="res://scenes/globals/main.tscn"
 boot_splash/bg_color=Color( 0.00784314, 0.658824, 0.0627451, 1 )
 config/icon="res://icon.png"
 
+[autoload]
+
+tapdaq="res://scripts/tapdaq.gd"
+
 [display]
 
 window/size/width=900
 window/size/height=2000
 window/dpi/allow_hidpi=true
 window/handheld/orientation="portrait"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/NativeLib/plugin.cfg", "res://addons/nativelib-export/plugin.cfg" )
 
 [gui]
 

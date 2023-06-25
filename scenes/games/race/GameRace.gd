@@ -2,6 +2,7 @@ extends Node2D
 signal back_to_menu
 signal restart_race
 signal send_event
+signal send_fb_event
 var Ball = preload("res://scenes/globals/ball.tscn")
 var MapManager = preload("res://scenes/globals/map_manager.tscn")
 var GameSaver = preload("res://scenes/globals/game_saver.tscn")
@@ -81,7 +82,8 @@ func _ready():
 	#$HUD.custom_minimum_size = get_viewport().get_visible_rect().size
 	var resize_back_button_x = block_size/$HUD/BackButton.get_rect().size.x
 	$HUD/BackButton.set_scale(Vector2(resize_back_button_x,resize_back_button_x))
-
+	emit_signal('send_fb_event','start_game')
+	emit_signal('send_fb_event','start_mind')
 	ball = Ball.instance()
 	var ball_size = ball.get_node('Sprite').get_rect().size.x
 	var s = target_bb_size/ball_size

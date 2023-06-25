@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/globals/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://img/bg_long.png" type="Texture" id=2]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://styles/game_mode_button_group.tres" type="ButtonGroup" id=4]
+[ext_resource path="res://fonts/level_label_font.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Theme" id=1]
 
@@ -42,27 +43,27 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Relax" type="CheckBox" parent="HUD/GameTypes"]
-margin_right = 175.0
-margin_bottom = 69.0
+margin_right = 160.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 5 )
 pressed = true
 group = ExtResource( 4 )
 text = "Relax"
 
 [node name="Hard" type="CheckBox" parent="HUD/GameTypes"]
-margin_top = 73.0
-margin_right = 175.0
-margin_bottom = 142.0
+margin_top = 54.0
+margin_right = 160.0
+margin_bottom = 123.0
 rect_min_size = Vector2( 100, 50 )
 custom_fonts/font = SubResource( 2 )
 group = ExtResource( 4 )
 text = "Hard"
 
 [node name="Race" type="CheckBox" parent="HUD/GameTypes"]
-margin_top = 146.0
-margin_right = 175.0
-margin_bottom = 215.0
+margin_top = 127.0
+margin_right = 160.0
+margin_bottom = 196.0
 rect_min_size = Vector2( 100, 50 )
 custom_fonts/font = SubResource( 2 )
 group = ExtResource( 4 )

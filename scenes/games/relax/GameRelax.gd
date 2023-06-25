@@ -1,6 +1,7 @@
 extends Node2D
 signal back_to_menu
 signal send_event
+signal send_fb_event
 var Ball = load("res://scenes/globals/ball.tscn")
 var MapManager = load("res://scenes/globals/map_manager.tscn")
 var GameSaver = preload("res://scenes/globals/game_saver.tscn")
@@ -55,7 +56,8 @@ func _ready():
 	add_blocks()
 	var resize_back_button_x = block_size/$HUD/BackButton.get_rect().size.x
 	$HUD/BackButton.set_scale(Vector2(resize_back_button_x,resize_back_button_x))
-
+	emit_signal('send_fb_event','start_game')
+	emit_signal('send_fb_event','start_relax')
 	ball = Ball.instance()
 	var ball_size = ball.get_node('Sprite').get_rect().size.x
 	var s = target_bb_size/ball_size
@@ -80,12 +82,15 @@ func _process(delta):
 			if int(scores+loaded_scores) == 10:
 				var event_info = {"scores":scores+loaded_scores}
 				emit_signal('send_event','first_scores',event_info)
+				emit_signal('send_fb_event', 'first_scores')
+				emit_signal('send_fb_event', 'first_scores_relax')
 			if scores%100 == 0:
 				var event_info = {"scores":scores}
 				emit_signal('send_event','reach_current_scores',event_info)
 			if int(scores+loaded_scores)%100 == 0:
 				var event_info = {"scores":scores+loaded_scores}
 				emit_signal('send_event','reach_global_scores',event_info)
+				emit_signal('send_fb_event', 'fb_mobile_level_achieved')
 	$HUD.update_score(scores+loaded_scores)
 
 

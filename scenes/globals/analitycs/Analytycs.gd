@@ -1,5 +1,7 @@
 extends HTTPRequest
 const uuid_util = preload('res://scenes/globals/analitycs/uuid.gd')
+var FBAnalytics = preload("res://scenes/globals/analitycs/fb_analytics.tscn")
+var fb_app
 var GameSaver = preload("res://scenes/globals/game_saver.tscn")
 var device_info = {}
 var cur_user_id = ''
@@ -102,7 +104,7 @@ func send_event(event_name, event_details):
 	#http_request.request_completed.connect(self._http_request_completed)
 	var cur_fps = Engine.get_frames_per_second()   
 	device_info['fps'] = cur_fps
-	print (event_name, ' ', event_details)#, ' ', device_info)
+	print ('IA: ',event_name, ' ', event_details)#, ' ', device_info)
 	var event_body = {"event_name": event_name,
 	"event_details": JSON.print(event_details),
 	"device_info":JSON.print(device_info),
@@ -114,6 +116,14 @@ func send_event(event_name, event_details):
 		push_error("An error occurred in the HTTP request.")
 	pass
 
+
+func send_fb_event(event_name, event_details = 0):
+	print('FB: ', event_name,' : ', fb_app.token,', ', fb_app.user,', ', fb_app._fb)
+	print(fb_app.token)
+	fb_app.log_event(event_name)
+	pass
+
+
 func init_info(screen_size):
 	pass
 
@@ -123,7 +133,10 @@ func _ready():
 	#print(uuid_util.v4())
 	game_saver = GameSaver.instance()
 	fill_device_info(get_viewport().get_visible_rect().size)
-	
+	print('going to init FB')
+	fb_app = FBAnalytics.instance()
+	fb_app._ready()
+	print('FB:= ',fb_app._fb)
 	pass
 	# Create an HTTP request node and connect its completion signal.
 	

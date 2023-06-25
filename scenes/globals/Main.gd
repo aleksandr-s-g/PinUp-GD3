@@ -19,6 +19,7 @@ func init_game_relax():
 	game_relax = GameRelax.instance()
 	game_relax.connect("back_to_menu",self, '_on_game_back_to_menu')
 	game_relax.connect("send_event", $Analitycs, 'send_event')
+	game_relax.connect("send_fb_event", $Analitycs, 'send_fb_event')
 	$HUD.connect("set_tester_info_visibility", game_relax,'_on_hud_set_tester_info_visibility')
 	game_relax.set_tester_visibility($HUD/TesterInfo.visible)
 	
@@ -27,6 +28,7 @@ func init_game_race():
 	game_race.connect("back_to_menu",self, '_on_game_back_to_menu')
 	game_race.connect("send_event", $Analitycs, 'send_event')
 	game_race.connect('restart_race',self,  '_on_race_restart')
+	game_race.connect("send_fb_event", $Analitycs, 'send_fb_event')
 	$HUD.connect("set_tester_info_visibility", game_race,'_on_hud_set_tester_info_visibility')
 	game_race.set_tester_visibility($HUD/TesterInfo.visible)
 	
@@ -34,6 +36,7 @@ func init_game_mind():
 	game_mind = GameMind.instance()
 	game_mind.connect("back_to_menu",self, '_on_game_back_to_menu')
 	game_mind.connect("send_event", $Analitycs, 'send_event')
+	game_mind.connect("send_fb_event", $Analitycs, 'send_fb_event')
 	$HUD.connect("set_tester_info_visibility", game_mind,'_on_hud_set_tester_info_visibility')
 	game_mind.set_tester_visibility($HUD/TesterInfo.visible)
 	
@@ -54,9 +57,11 @@ func _ready():
 	#var resize_x = get_viewport().get_visible_rect().size.x/$HUD/BackGround.get_rect().size.x
 	#$HUD/BackGround.set_scale(Vector2(resize_x,resize_x))
 	$Analitycs.send_event('launch', {})
+	$Analitycs.send_fb_event('launch', {})
 	init_main_menu()
 	select_scene(main_menu)
 	$HUD.connect("send_event", $Analitycs,'send_event')
+	$HUD.connect("send_fb_event", $Analitycs,'send_fb_event')
 	$HUD.connect("become_tester", $Analitycs,'_on_hud_become_tester')
 	$HUD/TesterInfo.hide()
 	#$HUD/BackGround.hide()

@@ -1,0 +1,63 @@
+{
+    "id": "09e2d6b7-2771-4d93-b3f0-1c752e32c6fc",
+    "platforms": [
+        "all",
+        "android"
+    ],
+    "packages": {
+        "nativelib-export": {
+            "version": "0.2.0",
+            "platforms": [
+                "all"
+            ],
+            "dependencies": []
+        },
+        "tapdaq": {
+            "version": "1.0.0",
+            "platforms": [
+                "all",
+                "android"
+            ],
+            "dependencies": [],
+            "variables": {
+                "Tapdaq/AppId": {
+                    "info": "Set your App ID here"
+                },
+                "Tapdaq/ClientKey": {
+                    "info": "Set your Client Key here"
+                }
+            },
+            "autoload": {
+                "tapdaq": "*res://scripts/tapdaq.gd"
+            }
+        },
+        "tapdaq-fan": {
+            "version": "1.0.0",
+            "platforms": [
+                "android"
+            ],
+            "dependencies": [
+                "tapdaq@1.0.0"
+            ]
+        },
+        "facebook": {
+            "version": "9.3.0.1",
+            "platforms": [
+                "all",
+                "android"
+            ],
+            "dependencies": [
+                "nativelib-export@0.2.0"
+            ],
+            "variables": {
+                "Facebook/FB_APP_ID": {
+                    "info": "Set your Facebook App ID here"
+                }
+            },
+            "android_module": "org/godotengine/godot/GodotFacebook",
+            "autoload": {
+                "facebook": "*res://scripts/facebook.gd"
+            }
+        }
+    }
+}
