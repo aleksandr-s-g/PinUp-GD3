@@ -1,20 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/globals/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://img/bg_long.png" type="Texture" id=2]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://fonts/main_menu_variant_font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://styles/game_mode_button_group.tres" type="ButtonGroup" id=4]
-[ext_resource path="res://fonts/level_label_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://fonts/start_button_font.tres" type="DynamicFont" id=5]
 
 [sub_resource type="Theme" id=1]
-
-[sub_resource type="DynamicFont" id=2]
-size = 50
-font_data = ExtResource( 3 )
-
-[sub_resource type="DynamicFont" id=3]
-size = 50
-font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -43,29 +35,29 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="Relax" type="CheckBox" parent="HUD/GameTypes"]
-margin_right = 160.0
+margin_right = 139.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = ExtResource( 5 )
+custom_fonts/font = ExtResource( 3 )
 pressed = true
 group = ExtResource( 4 )
 text = "Relax"
 
 [node name="Hard" type="CheckBox" parent="HUD/GameTypes"]
 margin_top = 54.0
-margin_right = 160.0
-margin_bottom = 123.0
+margin_right = 139.0
+margin_bottom = 104.0
 rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 group = ExtResource( 4 )
 text = "Hard"
 
 [node name="Race" type="CheckBox" parent="HUD/GameTypes"]
-margin_top = 127.0
-margin_right = 160.0
-margin_bottom = 196.0
+margin_top = 108.0
+margin_right = 139.0
+margin_bottom = 158.0
 rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = ExtResource( 3 )
 group = ExtResource( 4 )
 text = "Race"
 
@@ -78,7 +70,7 @@ margin_left = 0.299988
 margin_top = 0.0479736
 margin_right = 21.2
 margin_bottom = 130.048
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = ExtResource( 5 )
 text = "Start"
 
 [connection signal="pressed" from="HUD/Start" to="." method="_on_start_button_pressed"]

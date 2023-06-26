@@ -63,10 +63,11 @@ func read_json_lab_part(dir_with_maps):
 	var lab_parts_file_list = dir_contents(dir_with_maps)
 	var lab_part_random_file_name = lab_parts_file_list[randi() % lab_parts_file_list.size()]
 	var lab_part_file = File.new()
-	print(lab_parts_file_list)
+	lab_part_file.open(dir_with_maps+lab_part_random_file_name, File.READ)
+	#print(lab_parts_file_list)
 	#lab_part_random_file_name = 'new_textfile.tres'
 	#dir_with_maps = 'res://lab_parts/'
-	print('opening ',dir_with_maps,'::',lab_part_random_file_name,': ',lab_part_file.open(dir_with_maps+lab_part_random_file_name, File.READ))
+	#print('opening ',dir_with_maps,'::',lab_part_random_file_name,': ',lab_part_file.open(dir_with_maps+lab_part_random_file_name, File.READ))
 	last_filename = lab_part_random_file_name
 	var json_string = lab_part_file.get_line()
 	var dict = {}

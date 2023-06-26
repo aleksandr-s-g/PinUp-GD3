@@ -6,9 +6,12 @@ signal back_to_menu
 var tester_button_pressed_times = [0,0,0,0,0,0,0,0,0,0]
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var font = $CoinLabel.get_font("string_name", "")
-	font.size = get_viewport().get_visible_rect().size.x*0.8/10
-	$CoinLabel.add_font_override("string_name", font)
+	var block_size = get_viewport().get_visible_rect().size.x/10
+	#var font = $CoinLabel.get_font("string_name", "")
+	#font.size = get_viewport().get_visible_rect().size.x*0.8/10
+	#$CoinLabel.add_font_override("string_name", font)
+	$CoinLabel.get("custom_fonts/font").set_size(int(block_size*0.8))
+	$ScoreLabel.get("custom_fonts/font").set_size(int(block_size*1.0))
 	pass # Replace with function body.
 
 

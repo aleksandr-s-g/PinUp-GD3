@@ -118,8 +118,7 @@ func send_event(event_name, event_details):
 
 
 func send_fb_event(event_name, event_details = 0):
-	print('FB: ', event_name,' : ', fb_app.token,', ', fb_app.user,', ', fb_app._fb)
-	print(fb_app.token)
+	print('FB: ', event_name,' : ', fb_app._fb)
 	fb_app.log_event(event_name)
 	pass
 
@@ -133,10 +132,10 @@ func _ready():
 	#print(uuid_util.v4())
 	game_saver = GameSaver.instance()
 	fill_device_info(get_viewport().get_visible_rect().size)
-	print('going to init FB')
+	#print('going to init FB')
 	fb_app = FBAnalytics.instance()
 	fb_app._ready()
-	print('FB:= ',fb_app._fb)
+	#print('FB:= ',fb_app._fb)
 	pass
 	# Create an HTTP request node and connect its completion signal.
 	

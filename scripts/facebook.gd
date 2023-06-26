@@ -15,7 +15,7 @@ var user = null
 
 func _ready():
 	pause_mode = Node.PAUSE_MODE_PROCESS
-	print('fb _ready started')
+	#print('fb _ready started')
 	if not ProjectSettings.has_setting('Facebook/FB_APP_ID'):
 		push_error('Facebook/FB_APP_ID not found! Set it in engine.cfg!')
 		return
@@ -25,7 +25,7 @@ func _ready():
 		_fb.init(app_id)
 		_fb.setFacebookCallbackId(get_instance_id())
 		print('Facebook plugin inited')
-		print('_fb = ',_fb)
+		#print('_fb = ',_fb)
 		emit_signal('fb_inited')
 	elif(Engine.has_singleton("Facebook")):  # iOS
 		_fb = Engine.get_singleton("Facebook")
