@@ -55,8 +55,8 @@ func _ready():
 	for i in range(0,10):
 		add_child(map_manager.create_block(Vector2(-1,i), 'red',screen_size))
 	add_blocks()
-	var resize_back_button_x = block_size/$HUD/BackButton.get_rect().size.x
-	$HUD/BackButton.set_scale(Vector2(resize_back_button_x,resize_back_button_x))
+	#var resize_back_button_x = block_size/$HUD/BackButton.get_rect().size.x
+	#$HUD/BackButton.set_scale(Vector2(resize_back_button_x,resize_back_button_x))
 	emit_signal('send_fb_event','start_game')
 	emit_signal('send_fb_event','start_relax')
 	ball = Ball.instance()

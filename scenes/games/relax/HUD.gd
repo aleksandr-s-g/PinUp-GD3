@@ -7,11 +7,20 @@ var tester_button_pressed_times = [0,0,0,0,0,0,0,0,0,0]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var block_size = get_viewport().get_visible_rect().size.x/10
-	#var font = $CoinLabel.get_font("string_name", "")
-	#font.size = get_viewport().get_visible_rect().size.x*0.8/10
-	#$CoinLabel.add_font_override("string_name", font)
-	$CoinLabel.get("custom_fonts/font").set_size(int(block_size*0.8))
-	$ScoreLabel.get("custom_fonts/font").set_size(int(block_size*1.0))
+	var hud_bg_scale_x = get_viewport().get_visible_rect().size.x/$HudBG.get_rect().size.x
+	var hud_bg_scale_y = block_size*2/$HudBG.get_rect().size.y
+	var coin_img_scale_x = block_size*1.4/$CoinImg.get_rect().size.x
+	var coin_img_scale_y = block_size*1.4/$CoinImg.get_rect().size.y
+	var font_size = int(block_size * 0.5)
+	$HudBG.set_scale(Vector2(hud_bg_scale_x,hud_bg_scale_y))
+	$BackButton.rect_size = Vector2(block_size*0.7, block_size*0.7)
+	$BackButton.rect_position = Vector2(block_size*0.3, block_size*0.3)
+	$ScoreLabel.get_font("font").set_size(font_size)
+	$ScoreLabel.rect_position = Vector2(block_size*1.2,block_size*0.4)
+	$CoinImg.set_scale(Vector2(coin_img_scale_x,coin_img_scale_y))
+	
+	$CoinImg.position = Vector2(get_viewport().get_visible_rect().size.x-block_size*3.3,0)
+	$CoinLabel.rect_position = Vector2(get_viewport().get_visible_rect().size.x-block_size*1.5,block_size*0.37)
 	pass # Replace with function body.
 
 
