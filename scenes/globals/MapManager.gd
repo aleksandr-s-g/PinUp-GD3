@@ -7,6 +7,7 @@ var GoldCoin = load("res://scenes/globals/coin.tscn")
 var LevelLabel = preload("res://scenes/globals/level_label.tscn")
 var cur_lab_loaded_level = 0
 var last_filename = ''
+var levels_queue = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,9 +17,44 @@ func _ready():
 func _process(delta):
 	pass
 
+
+func load_one_local_lab_part(screen_size, dir_with_maps):
+	var block_list = []
+	var coin_list = []
+	var label_list = []
+	var map
+	if len(levels_queue) == 0:
+		levels_queue = dir_contents(dir_with_maps)
+		levels_queue.shuffle()
+	
+	var file = levels_queue.pop_front()
+		
+	map = read_json_lab_part(dir_with_maps, file)
+	label_list.append(create_label(Vector2(cur_lab_loaded_level,0),screen_size, '⬆️'))
+	label_list.append(create_label(Vector2(cur_lab_loaded_level+19,0),screen_size, '⬇️'))
+	for line_id in range(20):
+		var map_line_id = cur_lab_loaded_level+line_id
+		#var cur_label = LevelLabel.instantiate()
+		block_list.append(create_block(Vector2(map_line_id,-1), 'blue',screen_size))
+		block_list.append(create_block(Vector2(map_line_id,10),'red',screen_size))
+
+	for block in map['blocks']:
+		block_list.append(create_block(Vector2(block['y']+cur_lab_loaded_level,block['x']), block['colour'],screen_size))
+	
+	if 'coins' in map:
+		for coin in map['coins']:
+			coin_list.append(create_coin(Vector2(coin['y']+cur_lab_loaded_level,coin['x']), 'gold',screen_size))
+	cur_lab_loaded_level+=20
+	return {'coins':coin_list, 'blocks':block_list, 'labels':label_list}
+	
+
+
+
+
+
 func load_next_lab_part(screen_size, dir_with_maps):
 	
-	var map = read_json_lab_part(dir_with_maps)
+	var map = read_random_json_lab_part(dir_with_maps)
 	var block_list = []
 	var coin_list = []
 	var label_list = []
@@ -59,23 +95,21 @@ func dir_contents(path):
 	return files
 	
 	
-func read_json_lab_part(dir_with_maps):
-	var lab_parts_file_list = dir_contents(dir_with_maps)
-	var lab_part_random_file_name = lab_parts_file_list[randi() % lab_parts_file_list.size()]
+
+func read_json_lab_part(dir_path, file_name):
 	var lab_part_file = File.new()
-	lab_part_file.open(dir_with_maps+lab_part_random_file_name, File.READ)
-	#print(lab_parts_file_list)
-	#lab_part_random_file_name = 'new_textfile.tres'
-	#dir_with_maps = 'res://lab_parts/'
-	#print('opening ',dir_with_maps,'::',lab_part_random_file_name,': ',lab_part_file.open(dir_with_maps+lab_part_random_file_name, File.READ))
-	last_filename = lab_part_random_file_name
+	lab_part_file.open(dir_path+file_name, File.READ)
+	last_filename = file_name
 	var json_string = lab_part_file.get_line()
 	var dict = {}
-	#var json_object = JSON.new()
-	#json_object.parse(json_string)
 	dict = parse_json(json_string)
 	#print('loading ',lab_part_random_file_name)
 	return dict
+	
+func read_random_json_lab_part(dir_with_maps):
+	var lab_parts_file_list = dir_contents(dir_with_maps)
+	var lab_part_random_file_name = lab_parts_file_list[randi() % lab_parts_file_list.size()]
+	return read_json_lab_part(dir_with_maps, lab_part_random_file_name)
 
 func create_block(pos, colour, screen_size):
 	var target_bb_size = screen_size.x/10

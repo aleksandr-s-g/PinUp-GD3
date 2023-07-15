@@ -26,7 +26,8 @@ func set_tester_visibility(state):
 
 # Called when the node enters the scene tree for the first time.
 func add_blocks():
-	var new_lab_part = map_manager.load_next_lab_part(screen_size, dir_with_maps)
+	var new_lab_part = map_manager.load_one_local_lab_part(screen_size, dir_with_maps)
+	#var new_lab_part = map_manager.load_next_lab_part(screen_size, dir_with_maps)
 	for b in new_lab_part['blocks']:
 		add_child(b)
 	for b in new_lab_part['coins']:
@@ -96,7 +97,6 @@ func _process(delta):
 
 func _on_collect_coin():
 	coins = coins + 1
-	print(coins, ' coin collected!')
 	game_saver.set_coins(coins+loaded_coins)
 	$HUD.update_coins(coins+loaded_coins)
 	pass

@@ -9,13 +9,16 @@ var game_relax
 var game_mind
 var game_race
 var current_scene_name
+var last_started_mode = ''
 # Called when the node enters the scene tree for the first time.
 #b.connect('collected',self,'_on_collect_coin')
 func init_main_menu():
 	main_menu = MainMenu.instance()
+	main_menu.select_mode(last_started_mode)
 	main_menu.connect("start_button_pressed",self, '_on_main_menu_start_button_pressed')
 	
 func init_game_relax():
+	last_started_mode = 'relax'
 	game_relax = GameRelax.instance()
 	game_relax.connect("back_to_menu",self, '_on_game_back_to_menu')
 	game_relax.connect("send_event", $Analitycs, 'send_event')
@@ -24,6 +27,7 @@ func init_game_relax():
 	game_relax.set_tester_visibility($HUD/TesterInfo.visible)
 	
 func init_game_race():
+	last_started_mode = 'race'
 	game_race = GameRace.instance()
 	game_race.connect("back_to_menu",self, '_on_game_back_to_menu')
 	game_race.connect("send_event", $Analitycs, 'send_event')

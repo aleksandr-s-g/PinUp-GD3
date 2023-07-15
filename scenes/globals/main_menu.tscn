@@ -1,12 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/globals/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://img/bg_long.png" type="Texture" id=2]
-[ext_resource path="res://fonts/main_menu_variant_font.tres" type="DynamicFont" id=3]
-[ext_resource path="res://styles/game_mode_button_group.tres" type="ButtonGroup" id=4]
-[ext_resource path="res://fonts/start_button_font.tres" type="DynamicFont" id=5]
+[ext_resource path="res://img/res/main_menu_mode_btn_theme.tres" type="Theme" id=3]
+[ext_resource path="res://img/res/main_menu_start_btn.tres" type="StyleBox" id=4]
+[ext_resource path="res://fonts/static/Montserrat-Bold.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="Theme" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 5 )
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 1 )
@@ -26,40 +29,25 @@ theme = SubResource( 1 )
 texture = ExtResource( 2 )
 centered = false
 
+[node name="Relax_btn" type="Button" parent="HUD"]
+margin_right = 65.0
+margin_bottom = 21.0
+rect_clip_content = true
+theme = ExtResource( 3 )
+disabled = true
+text = "Journey"
+
 [node name="GameTypes" type="VBoxContainer" parent="HUD"]
-anchor_left = 0.439
+anchor_left = 0.2
 anchor_top = 0.678
-anchor_right = 0.55
+anchor_right = 0.8
 anchor_bottom = 0.921
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Relax" type="CheckBox" parent="HUD/GameTypes"]
-margin_right = 139.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = ExtResource( 3 )
-pressed = true
-group = ExtResource( 4 )
-text = "Relax"
-
-[node name="Hard" type="CheckBox" parent="HUD/GameTypes"]
-margin_top = 54.0
-margin_right = 139.0
-margin_bottom = 104.0
-rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = ExtResource( 3 )
-group = ExtResource( 4 )
-text = "Hard"
-
-[node name="Race" type="CheckBox" parent="HUD/GameTypes"]
-margin_top = 108.0
-margin_right = 139.0
-margin_bottom = 158.0
-rect_min_size = Vector2( 100, 50 )
-custom_fonts/font = ExtResource( 3 )
-group = ExtResource( 4 )
-text = "Race"
+margin_left = -0.100006
+margin_top = -0.456055
+margin_right = 0.399963
+margin_bottom = -131.792
+size_flags_stretch_ratio = 5.9
+custom_constants/separation = 40
 
 [node name="Start" type="Button" parent="HUD"]
 anchor_left = 0.3
@@ -70,7 +58,26 @@ margin_left = 0.299988
 margin_top = 0.0479736
 margin_right = 21.2
 margin_bottom = 130.048
-custom_fonts/font = ExtResource( 5 )
+custom_colors/font_color_disabled = Color( 0.168627, 0.368627, 0.482353, 1 )
+custom_colors/font_color_focus = Color( 0.168627, 0.368627, 0.482353, 1 )
+custom_colors/font_color = Color( 0.168627, 0.368627, 0.482353, 1 )
+custom_colors/font_color_hover = Color( 0.168627, 0.368627, 0.482353, 1 )
+custom_colors/font_color_pressed = Color( 0.168627, 0.368627, 0.482353, 1 )
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/disabled = ExtResource( 4 )
+custom_styles/normal = ExtResource( 4 )
 text = "Start"
 
+[node name="Race_btn" type="Button" parent="HUD"]
+margin_right = 65.0
+margin_bottom = 21.0
+rect_clip_content = true
+theme = ExtResource( 3 )
+text = "Race"
+
+[connection signal="pressed" from="HUD/Relax_btn" to="." method="_on_Relax_btn_pressed"]
 [connection signal="pressed" from="HUD/Start" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HUD/Race_btn" to="." method="_on_Race_btn_pressed"]
