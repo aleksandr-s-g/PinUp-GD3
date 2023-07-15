@@ -137,13 +137,14 @@ func _process(delta):
 				going_to_lose_first_time = false
 				not_going_to_lose_first_time = true
 			if !losed:
-				$HUD.show_message('You lose in ' + str($LoseTimer.time_left).pad_decimals(2))
-				$HUD/DoubleTapImage.show()
+				$HUD.set_lose_after($LoseTimer.time_left)
+				$HUD/GoingToLose.show()
+				#$HUD.show_message('You lose in ' + str($LoseTimer.time_left).pad_decimals(2))
+				#$HUD/DoubleTapImage.show()
 		else:
 			going_to_lose = false
 			going_to_lose_timer_running = false
-			$HUD.hide_message()
-			$HUD/DoubleTapImage.hide()
+			$HUD/GoingToLose.hide()
 			$LoseTimer.stop()
 			if not_going_to_lose_first_time:
 				emit_signal('send_event','not_going_to_lose',{"scores":scores})
@@ -205,9 +206,8 @@ func _process(delta):
 	
 
 func _on_lose():
-	$HUD.show_message('You lose!'+ '\n' + 'scores: '+str(scores))
-	$HUD/DoubleTapImage.hide()
-	$HUD/RestartButtons.show()
+	$HUD/LosePopUp.show()
+	$HUD/GoingToLose.hide()
 	$HUD/RelifeTimer.start()
 	losed = true
 	ball.is_blocked = true
@@ -267,9 +267,7 @@ func _on_hud_relife():
 	emit_signal('send_event','relife_pressed',{"scores":scores})
 	if coins+loaded_coins>=ball_relife_price:
 		print ('relifing2')
-		$HUD.hide_message()
-		$HUD/DoubleTapImage.hide()
-		$HUD/RestartButtons.hide()
+		$HUD/LosePopUp.hide()
 		$HUD/RelifeTimer.stop()
 		ball.is_blocked = false
 		var event_info = {"scores":scores}
@@ -280,7 +278,7 @@ func _on_hud_relife():
 		$HUD.update_coins(coins+loaded_coins)
 		var target_place = Vector2()
 		skip_target_place.x = 3
-		skip_target_place.y = (int((scores+20)/20)+5)*20
+		skip_target_place.y = (int((scores+20)/20)+2)*20
 		#print (target_place)
 		ball.is_skipping = true
 		ball.get_node("CollisionShape2D").disabled = true

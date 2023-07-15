@@ -18,7 +18,6 @@ func _ready():
 	$ScoreLabel.get_font("font").set_size(font_size)
 	$ScoreLabel.rect_position = Vector2(block_size*1.2,block_size*0.4)
 	$CoinImg.set_scale(Vector2(coin_img_scale_x,coin_img_scale_y))
-	
 	$CoinImg.position = Vector2(get_viewport().get_visible_rect().size.x-block_size*3.3,0)
 	$CoinLabel.rect_position = Vector2(get_viewport().get_visible_rect().size.x-block_size*1.5,block_size*0.37)
 	pass # Replace with function body.
@@ -80,4 +79,12 @@ func _on_back_button_pressed():
 
 func _on_confirmation_dialog_confirmed():
 	emit_signal("back_to_menu")
+	pass # Replace with function body.
+
+
+func _on_restart_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_relife_button_pressed():
 	pass # Replace with function body.
