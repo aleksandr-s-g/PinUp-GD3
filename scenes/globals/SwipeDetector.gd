@@ -8,8 +8,9 @@ signal swiped(direction)
 signal double_tap
 
 
-var max_diagonal_slope= 1.2
-var min_swipe_len= 5
+var max_diagonal_slope= 1.5
+var scale = 500
+var min_swipe_len
 
 
 var swipe_start_position: = Vector2()
@@ -19,6 +20,7 @@ func get_scale():
 	return 1.0
 
 func set_scale(scale):
+	min_swipe_len= scale/80
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:

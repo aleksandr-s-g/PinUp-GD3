@@ -17,6 +17,7 @@ func set_mind_scores(new_scores):
 func set_race_scores(new_scores):
 	loaded_game['race_scores'] = new_scores
 	save_game()
+	
 
 func get_coins():
 	load_game()

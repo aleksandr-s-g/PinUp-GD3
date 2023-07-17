@@ -39,6 +39,21 @@ z_index = -1
 texture = ExtResource( 3 )
 centered = false
 
+[node name="AddCoinsBtn" type="Button" parent="HUD/TesterInfo"]
+margin_left = 1.0
+margin_top = 366.0
+margin_right = 77.0
+margin_bottom = 386.0
+text = "Add Coins"
+
+[node name="ResetBtn" type="Button" parent="HUD/TesterInfo"]
+visible = false
+margin_left = 107.0
+margin_top = 366.0
+margin_right = 155.0
+margin_bottom = 386.0
+text = "Reset"
+
 [node name="TesterButton" type="Button" parent="HUD"]
 anchor_left = 0.9
 anchor_top = 0.95
@@ -54,5 +69,6 @@ custom_styles/normal = SubResource( 5 )
 
 [node name="Analitycs" parent="." instance=ExtResource( 4 )]
 
+[connection signal="pressed" from="HUD/TesterInfo/AddCoinsBtn" to="." method="_on_AddCoinsBtn_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="." method="_on_tester_button_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="HUD" method="_on_tester_button_pressed"]

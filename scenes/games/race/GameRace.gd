@@ -57,6 +57,7 @@ func add_blocks():
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
+	max_camera_speed = screen_size.y*0.4
 	map_manager = MapManager.instance()
 	#analytics = Analytics.instantiate()
 	#analytics = get_node("/root/Main/Analitycs")
@@ -103,7 +104,7 @@ func _ready():
 func _process(delta):
 	if ball:
 		#print(ball.position.y)
-		if ball.position.y < get_viewport().get_visible_rect().size.y-(map_manager.cur_lab_loaded_level-20)*block_size:
+		if ball.position.y < get_viewport().get_visible_rect().size.y-(map_manager.cur_lab_loaded_level-100)*block_size:
 			add_blocks()
 		if -ball.position.y > (scores+1)*block_size-screen_size.y:#get_viewport().get_visible_rect().size.y-cur_lab_loaded_level*cell_size:
 			scores+=1
@@ -128,6 +129,7 @@ func _process(delta):
 #			camera_bottom = -ball.position.y+get_viewport().get_visible_rect().size.y*0.5-5/delta
 		camera_bottom+= camera_speed*delta
 		ball.get_node("Camera2D").limit_bottom = get_viewport().get_visible_rect().size.y - camera_bottom
+		#print(camera_bottom)
 		
 		if round(-ball.position.y+get_viewport().get_visible_rect().size.y) < round(camera_bottom):
 			going_to_lose = true
@@ -235,6 +237,7 @@ func _on_hud_restart():
 	
 func ball_skip_up_finished():
 	ball.linear_velocity.x = 0
+	ball.linear_velocity.y = -ball.relative_speed * block_size
 	is_skipping = false
 	ball.get_node("CollisionShape2D").disabled = false
 	ball.is_skipping = false
@@ -251,11 +254,18 @@ func _on_ball_skip_up():
 		$HUD.update_coins(coins+loaded_coins)
 		var target_place = Vector2()
 		skip_target_place.x = 3
-		skip_target_place.y = (int((scores+20)/20)+1)*20
+		skip_target_place.y = (int((scores+20)/20)+3)*20-2
 		#print (target_place)
 		ball.is_skipping = true
 		ball.get_node("CollisionShape2D").disabled = true
-		ball.linear_velocity = Vector2(0, -2000)
+		if ball.position.y > -camera_bottom+screen_size.y:
+			if ball.position.y > -camera_bottom+screen_size.y*1.3:
+				var target_x_px = block_size*(skip_target_place.x+1)
+				ball.position.x = target_x_px
+			ball.position.y = -camera_bottom+screen_size.y
+
+		
+		ball.linear_velocity = Vector2(0, -max_camera_speed*5)
 		is_skipping = true
 	
 	
@@ -266,7 +276,6 @@ func _on_hud_relife():
 	#ball.get_node("CollisionShape2D").disabled = !ball.get_node("CollisionShape2D").disabled
 	emit_signal('send_event','relife_pressed',{"scores":scores})
 	if coins+loaded_coins>=ball_relife_price:
-		print ('relifing2')
 		$HUD/LosePopUp.hide()
 		$HUD/RelifeTimer.stop()
 		ball.is_blocked = false
@@ -276,14 +285,24 @@ func _on_hud_relife():
 		#print(coins, ' coin collected!')
 		game_saver.set_coins(coins+loaded_coins)
 		$HUD.update_coins(coins+loaded_coins)
-		var target_place = Vector2()
 		skip_target_place.x = 3
-		skip_target_place.y = (int((scores+20)/20)+2)*20
+		print(ball.position.y)
+		screen_size= get_viewport().get_visible_rect().size
+		ball.position.y = -camera_bottom+screen_size.y
+		print(ball.position.y)
+		scores = int((-ball.position.y+screen_size.y)/block_size)
+		skip_target_place.y = (int((scores+20)/20)+6)*20-2
 		#print (target_place)
 		ball.is_skipping = true
 		ball.get_node("CollisionShape2D").disabled = true
-		ball.linear_velocity = Vector2(0, -5000)
+		var target_x_px = block_size*(skip_target_place.x+1)
+		ball.position.x = target_x_px
+		
+		
+			
+		ball.linear_velocity = Vector2(0, -max_camera_speed*5)
 		is_skipping = true
+		print(ball.position.y)
 	pass # Replace with function body.
 
 func _on_hud_set_tester_info_visibility(state):

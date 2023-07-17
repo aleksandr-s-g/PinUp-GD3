@@ -3,12 +3,13 @@ var MainMenu = preload("res://scenes/globals/main_menu.tscn")
 var GameRelax = preload("res://scenes/games/relax/game_relax.tscn")
 var GameMind = preload("res://scenes/games/mind/game_mind.tscn")
 var GameRace = preload("res://scenes/games/race/game_race.tscn")
-
+var GameSaver = preload("res://scenes/globals/game_saver.tscn")
 var main_menu
 var game_relax
 var game_mind
 var game_race
 var current_scene_name
+var gs
 var last_started_mode = ''
 # Called when the node enters the scene tree for the first time.
 #b.connect('collected',self,'_on_collect_coin')
@@ -58,6 +59,7 @@ func select_scene(new_scene):
 	new_scene.add_to_group("scenes")
 
 func _ready():
+	gs = GameSaver.instance()
 	#var resize_x = get_viewport().get_visible_rect().size.x/$HUD/BackGround.get_rect().size.x
 	#$HUD/BackGround.set_scale(Vector2(resize_x,resize_x))
 	$Analitycs.send_event('launch', {})
@@ -106,3 +108,8 @@ func _on_game_back_to_menu():
 
 
 
+
+
+func _on_AddCoinsBtn_pressed():
+	gs.set_coins(1000)
+	pass # Replace with function body.

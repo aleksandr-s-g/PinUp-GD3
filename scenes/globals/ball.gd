@@ -13,6 +13,7 @@ func _ready():
 	$Camera2D.limit_right = get_viewport().get_visible_rect().size.x
 	$Camera2D.limit_bottom = get_viewport().get_visible_rect().size.y
 	speed = relative_speed*get_viewport().get_visible_rect().size.x/10
+	$SwipeDetector.set_scale(get_viewport().get_visible_rect().size.x)
 	pass # Replace with function body.
 
 func check_keyboard_move_command():
