@@ -41,8 +41,8 @@ centered = false
 
 [node name="AddCoinsBtn" type="Button" parent="HUD/TesterInfo"]
 margin_left = 1.0
-margin_top = 366.0
-margin_right = 77.0
+margin_top = 331.0
+margin_right = 160.0
 margin_bottom = 386.0
 text = "Add Coins"
 

@@ -24,6 +24,7 @@ func load_one_local_lab_part(screen_size, dir_with_maps):
 	var label_list = []
 	var map
 	if len(levels_queue) == 0:
+		randomize()
 		levels_queue = dir_contents(dir_with_maps)
 		levels_queue.shuffle()
 	
@@ -150,10 +151,10 @@ func create_coin(pos, colour, screen_size):
 	else:
 		print(colour, ' IS WRONG COLOUR!')
 	var bb_size = bb.get_node('Sprite').get_rect().size.x
-	var s = target_bb_size/bb_size
+	var s = target_bb_size*1.5/bb_size
 	bb.scale = Vector2(s,s)
 	var r_mob_size = target_bb_size
-	var poz_y = screen_size.y - r_mob_size*(pos.x+1)
-	var pos_x = pos.y*target_bb_size
+	var poz_y = screen_size.y - r_mob_size*(float(pos.x)+0.5)
+	var pos_x = (float(pos.y)+0.5)*target_bb_size
 	bb.position = Vector2(pos_x,poz_y)
 	return bb

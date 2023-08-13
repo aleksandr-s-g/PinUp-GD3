@@ -38,7 +38,6 @@ smoothing_enabled = true
 script = ExtResource( 2 )
 
 [node name="DoubleTapTimeout" type="Timer" parent="SwipeDetector"]
-wait_time = 0.2
 one_shot = true
 
 [connection signal="swiped" from="SwipeDetector" to="." method="_on_swipe_detector_swiped"]

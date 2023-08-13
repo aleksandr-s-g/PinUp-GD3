@@ -1,6 +1,6 @@
 extends Node2D
 signal start_button_pressed
-var selected_mode = 'relax'
+var selected_mode = ''
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var block_size = get_viewport().get_visible_rect().size.x/10
@@ -34,6 +34,7 @@ func _ready():
 	$HUD/Start.rect_position.y = get_viewport().get_visible_rect().size.y - start_btn_h - 20
 	$HUD/Start.rect_position.x = get_viewport().get_visible_rect().size.x/2-start_btn_w/2
 	
+	_on_Race_btn_pressed()
 	
 	
 	#print($HUD.get_rect().size)

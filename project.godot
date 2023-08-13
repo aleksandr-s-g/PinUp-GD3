@@ -24,6 +24,7 @@ modules="org/godotengine/godot/GodotFacebook"
 
 config/name="PinUp GD3"
 run/main_scene="res://scenes/globals/main.tscn"
+run/delta_sync_after_draw=true
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0.00392157, 0.0705882, 0.129412, 1 )
 config/icon="res://img/icon512.png"
