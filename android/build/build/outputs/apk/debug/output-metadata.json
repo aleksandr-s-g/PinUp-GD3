@@ -1,0 +1,20 @@
+{
+  "version": 3,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.cobragamesru.pinup",
+  "variantName": "debug",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "attributes": [],
+      "versionCode": 305,
+      "versionName": "1.2.2",
+      "outputFile": "android_debug.apk"
+    }
+  ],
+  "elementType": "File"
+}

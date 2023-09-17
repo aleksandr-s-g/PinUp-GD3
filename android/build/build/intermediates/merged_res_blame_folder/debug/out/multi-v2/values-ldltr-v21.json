@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.godot.game-mergeDebugResources-33:/values-ldltr-v21/values-ldltr-v21.xml",
+            "map": [
+                {
+                    "source": "/Users/alex/.gradle/caches/transforms-3/55b40a28a60ea2df0ca565fbc4a25316/transformed/appcompat-1.5.1/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        }
+    ]
+}

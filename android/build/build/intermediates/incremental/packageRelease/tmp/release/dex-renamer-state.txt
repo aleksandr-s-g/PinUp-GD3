@@ -1,0 +1,7 @@
+#Sun Sep 17 16:26:08 GET 2023
+base.1=/Users/alex/PinUp GD3/PinUp GD3/android/build/build/intermediates/dex/release/mergeDexRelease/classes2.dex
+path.1=classes2.dex
+base.0=/Users/alex/PinUp GD3/PinUp GD3/android/build/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.1=classes2.dex
+renamed.0=classes.dex
+path.0=classes.dex

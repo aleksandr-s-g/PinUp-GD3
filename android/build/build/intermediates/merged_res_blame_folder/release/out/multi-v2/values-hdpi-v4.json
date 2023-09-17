@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.godot.game-mergeReleaseResources-33:/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/Users/alex/.gradle/caches/transforms-3/55b40a28a60ea2df0ca565fbc4a25316/transformed/appcompat-1.5.1/res/values-hdpi-v4/values-hdpi-v4.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
