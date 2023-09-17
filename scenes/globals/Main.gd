@@ -4,10 +4,12 @@ var GameRelax = preload("res://scenes/games/relax/game_relax.tscn")
 var GameMind = preload("res://scenes/games/mind/game_mind.tscn")
 var GameRace = preload("res://scenes/games/race/game_race.tscn")
 var GameSaver = preload("res://scenes/globals/game_saver.tscn")
+var Admob = preload("res://addons/admob/test/Example.tscn")
 var main_menu
 var game_relax
 var game_mind
 var game_race
+var admob_scene
 var current_scene_name
 var gs
 var last_started_mode = ''
@@ -17,6 +19,7 @@ func init_main_menu():
 	main_menu = MainMenu.instance()
 	main_menu.select_mode(last_started_mode)
 	main_menu.connect("start_button_pressed",self, '_on_main_menu_start_button_pressed')
+	main_menu.connect("admob_button_pressed",self, '_on_main_menu_admob_button_pressed')
 	
 func init_game_relax():
 	last_started_mode = 'relax'
@@ -26,6 +29,11 @@ func init_game_relax():
 	game_relax.connect("send_fb_event", $Analitycs, 'send_fb_event')
 	$HUD.connect("set_tester_info_visibility", game_relax,'_on_hud_set_tester_info_visibility')
 	game_relax.set_tester_visibility($HUD/TesterInfo.visible)
+	
+func init_admob_scene():
+	admob_scene = Admob.instance()
+	admob_scene.rect_min_size = get_viewport().get_visible_rect().size
+	#print(admob_scene.get_rect().size)
 	
 func init_game_race():
 	last_started_mode = 'race'
@@ -70,6 +78,8 @@ func _ready():
 	$HUD.connect("send_fb_event", $Analitycs,'send_fb_event')
 	$HUD.connect("become_tester", $Analitycs,'_on_hud_become_tester')
 	$HUD/TesterInfo.hide()
+	$AdMob.load_rewarded_video()
+	print("$AdMob.load_rewarded_video()")
 	#$HUD/BackGround.hide()
 	pass
 
@@ -79,7 +89,12 @@ func _process(delta):
 	pass
 
 
-
+func _on_main_menu_admob_button_pressed():
+	print('Changing scene to admob...')
+	$AdMob.show_rewarded_video()
+	#init_admob_scene()
+	#select_scene(admob_scene)
+	pass
 
 func _on_main_menu_start_button_pressed(mode):
 	if mode == 'relax':
@@ -112,4 +127,16 @@ func _on_game_back_to_menu():
 
 func _on_AddCoinsBtn_pressed():
 	gs.set_coins(1000)
+	pass # Replace with function body.
+
+
+func _on_AdMob_rewarded_video_loaded():
+	print ("_on_AdMob_rewarded_video_loaded")
+	pass # Replace with function body.
+
+
+func _on_AdMob_rewarded(currency, amount):
+	print ("_on_AdMob_rewarded(currency, amount)", currency,"~", amount)
+	$AdMob.load_rewarded_video()
+	print ("loading new video...")
 	pass # Replace with function body.

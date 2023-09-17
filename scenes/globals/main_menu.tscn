@@ -78,6 +78,15 @@ rect_clip_content = true
 theme = ExtResource( 3 )
 text = "Race"
 
+[node name="AdMobBtn" type="Button" parent="HUD"]
+anchor_left = 0.777
+anchor_right = 1.0
+anchor_bottom = 0.034
+margin_right = 12.0
+margin_bottom = 20.0
+text = "AdMob"
+
 [connection signal="pressed" from="HUD/Relax_btn" to="." method="_on_Relax_btn_pressed"]
 [connection signal="pressed" from="HUD/Start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HUD/Race_btn" to="." method="_on_Race_btn_pressed"]
+[connection signal="pressed" from="HUD/AdMobBtn" to="." method="_on_AdMobBtn_pressed"]

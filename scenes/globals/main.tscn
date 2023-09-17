@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/globals/Main.gd" type="Script" id=1]
 [ext_resource path="res://scenes/globals/HUD.gd" type="Script" id=2]
 [ext_resource path="res://img/tester_info.png" type="Texture" id=3]
 [ext_resource path="res://scenes/globals/analitycs/analitycs.tscn" type="PackedScene" id=4]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -69,6 +70,13 @@ custom_styles/normal = SubResource( 5 )
 
 [node name="Analitycs" parent="." instance=ExtResource( 4 )]
 
+[node name="AdMob" type="Node" parent="."]
+script = ExtResource( 5 )
+rewarded_id = "ca-app-pub-2913346865682181/8111139984"
+
 [connection signal="pressed" from="HUD/TesterInfo/AddCoinsBtn" to="." method="_on_AddCoinsBtn_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="." method="_on_tester_button_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="HUD" method="_on_tester_button_pressed"]
+[connection signal="rewarded" from="AdMob" to="." method="_on_AdMob_rewarded"]
+[connection signal="rewarded" from="AdMob" to="AdMob" method="_on_AdMob_rewarded"]
+[connection signal="rewarded_video_loaded" from="AdMob" to="." method="_on_AdMob_rewarded_video_loaded"]

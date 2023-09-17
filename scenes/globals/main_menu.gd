@@ -1,5 +1,6 @@
 extends Node2D
 signal start_button_pressed
+signal admob_button_pressed
 var selected_mode = ''
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -79,4 +80,10 @@ func _on_Race_btn_pressed():
 	selected_mode = 'race'
 	$HUD/Relax_btn.disabled = false
 	$HUD/Race_btn.disabled = true
+	pass # Replace with function body.
+
+
+func _on_AdMobBtn_pressed():
+	print('ADMB')
+	emit_signal("admob_button_pressed")
 	pass # Replace with function body.

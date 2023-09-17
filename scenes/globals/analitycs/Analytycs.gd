@@ -6,7 +6,7 @@ var GameSaver = preload("res://scenes/globals/game_saver.tscn")
 var device_info = {}
 var cur_user_id = ''
 var device_global_ip = '0.0.0.0'
-var app_version = '1.2'
+var app_version = '1.2.2'
 var is_tester = false
 var coins = 0
 var game_saver
