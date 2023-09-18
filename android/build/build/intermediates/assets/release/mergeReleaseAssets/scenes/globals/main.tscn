@@ -72,7 +72,7 @@ custom_styles/normal = SubResource( 5 )
 
 [node name="AdMob" type="Node" parent="."]
 script = ExtResource( 5 )
-rewarded_id = "ca-app-pub-3940256099942544/5224354917"
+rewarded_id = "ca-app-pub-2913346865682181/8111139984"
 
 [connection signal="pressed" from="HUD/TesterInfo/AddCoinsBtn" to="." method="_on_AddCoinsBtn_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="." method="_on_tester_button_pressed"]

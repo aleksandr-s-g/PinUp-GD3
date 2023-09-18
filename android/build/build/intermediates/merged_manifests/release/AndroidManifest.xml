@@ -113,7 +113,7 @@
             android:value="@string/facebook_app_id" /> <!-- CHUNK_APPLICATION_END -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="ca-app-pub-2913346865682181~2906914762" />
         <meta-data
             android:name="org.godotengine.plugin.v1.GodotAdMob"
             android:value="shinnil.godot.plugin.android.godotadmob.GodotAdMob" /> <!-- Records the version of the Godot library -->
