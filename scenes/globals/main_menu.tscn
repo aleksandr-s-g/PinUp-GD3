@@ -1,14 +1,35 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scenes/globals/main_menu.gd" type="Script" id=1]
 [ext_resource path="res://img/bg_long.png" type="Texture" id=2]
 [ext_resource path="res://img/res/main_menu_mode_btn_theme.tres" type="Theme" id=3]
 [ext_resource path="res://img/res/main_menu_start_btn.tres" type="StyleBox" id=4]
 [ext_resource path="res://fonts/static/Montserrat-Bold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://fonts/static/Montserrat-SemiBold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://img/res/restart_btn.tres" type="StyleBox" id=9]
+[ext_resource path="res://fonts/static/Montserrat-Regular.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://fonts/static/Montserrat-Medium.ttf" type="DynamicFontData" id=11]
+[ext_resource path="res://img/popup.png" type="Texture" id=12]
 
 [sub_resource type="Theme" id=1]
 
 [sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=14]
+resource_local_to_scene = true
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 11 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+font_data = ExtResource( 10 )
+
+[sub_resource type="DynamicFont" id=13]
 font_data = ExtResource( 5 )
 
 [node name="MainMenu" type="Node2D"]
@@ -84,9 +105,64 @@ anchor_right = 1.0
 anchor_bottom = 0.034
 margin_right = 12.0
 margin_bottom = 20.0
-text = "AdMob"
+theme = ExtResource( 3 )
+text = "+ 100 coins"
+
+[node name="AdMobPopUp" type="Node2D" parent="HUD"]
+
+[node name="MessageBG" type="Sprite" parent="HUD/AdMobPopUp"]
+position = Vector2( 16, 519 )
+texture = ExtResource( 12 )
+centered = false
+
+[node name="TYLbl" type="Label" parent="HUD/AdMobPopUp"]
+process_priority = 2
+margin_right = 40.0
+margin_bottom = 14.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "Thank you!"
+align = 1
+
+[node name="GrantedCoinsLbl" type="Label" parent="HUD/AdMobPopUp"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 4 )
+text = "100 coins have been granted"
+align = 1
+
+[node name="YourBalanceLbl" type="Label" parent="HUD/AdMobPopUp"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 5 )
+text = "Your balance:"
+align = 1
+
+[node name="BalanceLbl" type="Label" parent="HUD/AdMobPopUp"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 6 )
+text = "(100) coins"
+align = 1
+
+[node name="OkBtn" type="Button" parent="HUD/AdMobPopUp"]
+margin_right = 12.0
+margin_bottom = 20.0
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+custom_colors/font_color_focus = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 13 )
+custom_styles/hover = ExtResource( 9 )
+custom_styles/pressed = ExtResource( 9 )
+custom_styles/focus = ExtResource( 9 )
+custom_styles/disabled = ExtResource( 9 )
+custom_styles/normal = ExtResource( 9 )
+text = "Great!"
 
 [connection signal="pressed" from="HUD/Relax_btn" to="." method="_on_Relax_btn_pressed"]
 [connection signal="pressed" from="HUD/Start" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="HUD/Race_btn" to="." method="_on_Race_btn_pressed"]
 [connection signal="pressed" from="HUD/AdMobBtn" to="." method="_on_AdMobBtn_pressed"]
+[connection signal="pressed" from="HUD/AdMobPopUp/OkBtn" to="." method="_on_OkBtn_pressed"]

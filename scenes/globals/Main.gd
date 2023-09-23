@@ -79,6 +79,7 @@ func _ready():
 	$HUD.connect("become_tester", $Analitycs,'_on_hud_become_tester')
 	$HUD/TesterInfo.hide()
 	$AdMob.load_rewarded_video()
+	$Analitycs.send_event('rewarded_video_requested', {})
 	print("$AdMob.load_rewarded_video()")
 	#$HUD/BackGround.hide()
 	pass
@@ -91,6 +92,7 @@ func _process(delta):
 
 func _on_main_menu_admob_button_pressed():
 	print('Changing scene to admob...')
+	$Analitycs.send_event('admob_button_pressed', {})
 	$AdMob.show_rewarded_video()
 	#init_admob_scene()
 	#select_scene(admob_scene)
@@ -126,17 +128,22 @@ func _on_game_back_to_menu():
 
 
 func _on_AddCoinsBtn_pressed():
-	gs.set_coins(1000)
+	gs.set_coins(gs.get_coins() + 1000)
 	pass # Replace with function body.
 
 
 func _on_AdMob_rewarded_video_loaded():
 	print ("_on_AdMob_rewarded_video_loaded")
+	$Analitycs.send_event('rewarded_video_loaded', {})
+	
 	pass # Replace with function body.
 
 
 func _on_AdMob_rewarded(currency, amount):
 	print ("_on_AdMob_rewarded(currency, amount)", currency,"~", amount)
+	main_menu.reward()
 	$AdMob.load_rewarded_video()
+	$Analitycs.send_event('rewarded_video_granted', {})
+	$Analitycs.send_event('rewarded_video_requested', {})
 	print ("loading new video...")
 	pass # Replace with function body.
