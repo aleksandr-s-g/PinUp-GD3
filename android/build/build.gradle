@@ -14,9 +14,6 @@ buildscript {
     dependencies {
         classpath libraries.androidGradlePlugin
         classpath libraries.kotlinGradlePlugin
-        //implementation fileTree(dir: "libs", include: ["*.jar"])
-        //implementation 'com.android.support:multidex:1.0.3'
-        //implementation 'androidx.multidex:multidex:2.0.1'  //with androidx libraries
 //CHUNK_BUILDSCRIPT_DEPENDENCIES_BEGIN
 //CHUNK_BUILDSCRIPT_DEPENDENCIES_END
     }
@@ -117,7 +114,6 @@ android {
         }
 
         manifestPlaceholders = [godotEditorVersion: getGodotEditorVersion()]
-
 
         // Enabling multidex support.
         multiDexEnabled true

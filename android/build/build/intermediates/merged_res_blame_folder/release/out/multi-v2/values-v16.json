@@ -4,7 +4,7 @@
             "outputFile": "com.godot.game-mergeReleaseResources-33:/values-v16/values-v16.xml",
             "map": [
                 {
-                    "source": "/Users/alex/.gradle/caches/transforms-3/ce7eb1358d214c831ca34908c381f036/transformed/core-1.8.0/res/values-v16/values-v16.xml",
+                    "source": "/Users/alex/.gradle/caches/transforms-3/35f4a948deebfe6e56a5492680c1f66f/transformed/core-1.8.0/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/alex/.gradle/caches/transforms-3/55b40a28a60ea2df0ca565fbc4a25316/transformed/appcompat-1.5.1/res/values-v16/values-v16.xml",
+                    "source": "/Users/alex/.gradle/caches/transforms-3/38826d29dd2dcdda546a662638c2bdd9/transformed/appcompat-1.5.1/res/values-v16/values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

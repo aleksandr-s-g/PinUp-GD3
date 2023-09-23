@@ -6,9 +6,9 @@
     maven=":build:"
     gradle="7.2.1"
     buildFolder="build"
-    bootClassPath="/Users/alex/Library/Android/sdk/platforms/android-32/android.jar:/Users/alex/Library/Android/sdk/build-tools/32.0.0/core-lambda-stubs.jar"
+    bootClassPath="/Users/alex/Library/Android/sdk/platforms/android-33/android.jar:/Users/alex/Library/Android/sdk/build-tools/33.0.2/core-lambda-stubs.jar"
     javaSourceLevel="11"
-    compileTarget="android-32"
+    compileTarget="android-33"
     neverShrinking="true">
   <lintOptions
       disable="MissingTranslation,UnusedResources"

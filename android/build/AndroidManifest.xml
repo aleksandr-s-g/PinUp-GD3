@@ -29,8 +29,7 @@
     <!-- If you want to add tags manually, do before it. -->
     <!-- WARNING: This should stay on a single line until the parsing code is improved. See GH-32414. -->
     <application android:label="@string/godot_project_name_string" android:allowBackup="false" android:isGame="true" android:hasFragileUserData="false" android:requestLegacyExternalStorage="false" tools:ignore="GoogleAppIndexingWarning" android:icon="@mipmap/icon">
-        android:name="androidx.multidex.MultiDexApplication">>
-
+    android:name="androidx.multidex.MultiDexApplication">>
         <!-- Records the version of the Godot editor used for building -->
         <meta-data
             android:name="org.godotengine.editor.version"
@@ -106,7 +105,6 @@
 <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id" />
 <!--CHUNK_APPLICATION_END-->
 <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID" android:value="ca-app-pub-2913346865682181~2906914762" />
-
     </application>
 
 </manifest>

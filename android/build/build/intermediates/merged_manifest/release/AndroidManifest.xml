@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cobragamesru.pinup"
     android:installLocation="auto"
-    android:versionCode="305"
-    android:versionName="1.2.2" > <!-- glEsVersion is modified by the exporter, changing this value here has no effect. -->
+    android:versionCode="311"
+    android:versionName="1.2.3" > <!-- glEsVersion is modified by the exporter, changing this value here has no effect. -->
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="32" />
+        android:targetSdkVersion="33" />
 
     <supports-screens
         android:largeScreens="true"
@@ -78,7 +78,7 @@
         <!-- Records the version of the Godot editor used for building -->
         <meta-data
             android:name="org.godotengine.editor.version"
-            android:value="3.5.2.stable" /> <!-- Custom application XML added by add-ons. -->
+            android:value="3.5.3.rc1" /> <!-- Custom application XML added by add-ons. -->
         <!-- CHUNK_APPLICATION_BEGIN -->
         <activity
             android:name="com.facebook.FacebookActivity"
@@ -119,7 +119,7 @@
             android:value="shinnil.godot.plugin.android.godotadmob.GodotAdMob" /> <!-- Records the version of the Godot library -->
         <meta-data
             android:name="org.godotengine.library.version"
-            android:value="3.5.2.stable" />
+            android:value="3.5.3.rc" />
 
         <service android:name="org.godotengine.godot.GodotDownloaderService" />
 
@@ -128,6 +128,17 @@
             android:exported="false"
             android:process=":phoenix"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.cobragamesru.pinup.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true" >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/godot_provider_paths" />
+        </provider>
+
         <activity android:name="com.facebook.CustomTabMainActivity" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
