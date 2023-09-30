@@ -3,6 +3,7 @@ signal back_to_menu
 signal restart_race
 signal send_event
 signal send_fb_event
+signal try_show_interstitial
 var Ball = preload("res://scenes/globals/ball.tscn")
 var MapManager = preload("res://scenes/globals/map_manager.tscn")
 var GameSaver = preload("res://scenes/globals/game_saver.tscn")
@@ -231,6 +232,7 @@ func _on_hud_back_to_menu():
 	pass # Replace with function body.
 	
 func _on_hud_restart():
+	emit_signal('try_show_interstitial')
 	emit_signal("restart_race")
 	emit_signal('send_event','restart_pressed',{"scores":scores})
 	pass # Replace with function body.

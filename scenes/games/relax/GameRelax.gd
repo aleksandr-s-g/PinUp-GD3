@@ -2,6 +2,7 @@ extends Node2D
 signal back_to_menu
 signal send_event
 signal send_fb_event
+signal try_show_interstitial
 var Ball = load("res://scenes/globals/ball.tscn")
 var MapManager = load("res://scenes/globals/map_manager.tscn")
 var GameSaver = preload("res://scenes/globals/game_saver.tscn")
@@ -88,6 +89,7 @@ func _process(delta):
 			if scores%100 == 0:
 				var event_info = {"scores":scores}
 				emit_signal('send_event','reach_current_scores',event_info)
+				emit_signal('try_show_interstitial')
 			if int(scores+loaded_scores)%100 == 0:
 				var event_info = {"scores":scores+loaded_scores}
 				emit_signal('send_event','reach_global_scores',event_info)

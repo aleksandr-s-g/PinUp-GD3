@@ -76,11 +76,18 @@ script = ExtResource( 6 )
 
 [node name="AdMob" type="Node" parent="AdController"]
 script = ExtResource( 5 )
+interstitial_id = "ca-app-pub-2913346865682181/9170466983"
 rewarded_id = "ca-app-pub-2913346865682181/8111139984"
 
 [connection signal="pressed" from="HUD/TesterInfo/AddCoinsBtn" to="." method="_on_AddCoinsBtn_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="." method="_on_tester_button_pressed"]
 [connection signal="pressed" from="HUD/TesterButton" to="HUD" method="_on_tester_button_pressed"]
+[connection signal="interstitial_clicked" from="AdController/AdMob" to="AdController" method="_on_AdMob_interstitial_clicked"]
+[connection signal="interstitial_closed" from="AdController/AdMob" to="AdController" method="_on_AdMob_interstitial_closed"]
+[connection signal="interstitial_failed_to_load" from="AdController/AdMob" to="AdController" method="_on_AdMob_interstitial_failed_to_load"]
+[connection signal="interstitial_impression" from="AdController/AdMob" to="AdController" method="_on_AdMob_interstitial_impression"]
+[connection signal="interstitial_loaded" from="AdController/AdMob" to="AdController" method="_on_AdMob_interstitial_loaded"]
+[connection signal="interstitial_opened" from="AdController/AdMob" to="AdController" method="_on_AdMob_interstitial_opened"]
 [connection signal="rewarded" from="AdController/AdMob" to="." method="_on_AdMob_rewarded"]
 [connection signal="rewarded" from="AdController/AdMob" to="AdController" method="_on_AdMob_rewarded"]
 [connection signal="rewarded" from="AdController/AdMob" to="AdController/AdMob" method="_on_AdMob_rewarded"]

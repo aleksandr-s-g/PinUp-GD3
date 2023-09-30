@@ -22,6 +22,7 @@ func init_main_menu():
 	main_menu.connect("admob_button_pressed",self, '_on_main_menu_admob_button_pressed')
 	$AdController.connect("rewarded_sig",main_menu, '_on_rewarded')
 	
+	
 func init_game_relax():
 	last_started_mode = 'relax'
 	game_relax = GameRelax.instance()
@@ -29,6 +30,7 @@ func init_game_relax():
 	game_relax.connect("send_event", $Analitycs, 'send_event')
 	game_relax.connect("send_fb_event", $Analitycs, 'send_fb_event')
 	$HUD.connect("set_tester_info_visibility", game_relax,'_on_hud_set_tester_info_visibility')
+	game_relax.connect("try_show_interstitial",$AdController,"_on_try_show_interstitial")
 	game_relax.set_tester_visibility($HUD/TesterInfo.visible)
 	
 func init_admob_scene():
@@ -43,6 +45,7 @@ func init_game_race():
 	game_race.connect("send_event", $Analitycs, 'send_event')
 	game_race.connect('restart_race',self,  '_on_race_restart')
 	game_race.connect("send_fb_event", $Analitycs, 'send_fb_event')
+	game_race.connect("try_show_interstitial",$AdController,"_on_try_show_interstitial")
 	$HUD.connect("set_tester_info_visibility", game_race,'_on_hud_set_tester_info_visibility')
 	game_race.set_tester_visibility($HUD/TesterInfo.visible)
 	
@@ -78,6 +81,7 @@ func _ready():
 	$HUD.connect("send_event", $Analitycs,'send_event')
 	$HUD.connect("send_fb_event", $Analitycs,'send_fb_event')
 	$HUD.connect("become_tester", $Analitycs,'_on_hud_become_tester')
+	$AdController.connect("send_event", $Analitycs, 'send_event')
 	$HUD/TesterInfo.hide()
 	print("$AdMob.load_rewarded_video()")
 	#$HUD/BackGround.hide()
