@@ -117,7 +117,7 @@ func _on_start_button_pressed():
 	pass # Replace with function body.
 
 
-func reward():
+func _on_rewarded():
 	$HUD/AdMobPopUp.show()
 	gs.set_coins(gs.get_coins() + 100)
 	$HUD/AdMobPopUp/BalanceLbl.text = str(gs.get_coins())

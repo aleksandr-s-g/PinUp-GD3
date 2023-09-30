@@ -10,6 +10,8 @@ var app_version = '1.2.3'
 var is_tester = false
 var coins = 0
 var game_saver
+var event_num = 0
+var session_id = 0
 
 func save_user_info():
 	var node_data ={
@@ -95,9 +97,11 @@ func fill_device_info(screen_size):
 func send_event(event_name, event_details):
 	load_game_info()
 	device_info['coins'] = coins
-	
+	var now = Time.get_unix_time_from_system()
 	event_details['current_scene'] = get_node("/root/Main").current_scene_name
-	
+	event_details['device_time'] = now
+	event_details['session_id'] = session_id
+	event_details['event_num'] = event_num
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.connect('request_completed', self, '_http_request_completed')
@@ -115,6 +119,7 @@ func send_event(event_name, event_details):
 	if status != OK:
 		push_error("An error occurred in the HTTP request.")
 	pass
+	event_num+=1
 
 
 func send_fb_event(event_name, event_details = 0):
@@ -135,6 +140,7 @@ func _ready():
 	#print('going to init FB')
 	fb_app = FBAnalytics.instance()
 	fb_app._ready()
+	session_id = cur_user_id+'---'+str(Time.get_unix_time_from_system())
 	#print('FB:= ',fb_app._fb)
 	pass
 	# Create an HTTP request node and connect its completion signal.
