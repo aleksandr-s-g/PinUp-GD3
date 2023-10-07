@@ -15,6 +15,6 @@ data_*/
 
 addons/*
 
-android/build/build/*
+/android/build/build/*
 
-android/build/.gradle/*
+/android/build/.gradle/*
